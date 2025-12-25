@@ -1,8 +1,8 @@
 const fs = require('fs');
 const {browserSync} = require('vibium');
 
-//Launch a browser ( you will see it open)
-const vibe = browserSync.launch({ headless: false });
+//Launch a browser (headless for CI)
+const vibe = browserSync.launch({ headless: true });
 
 //Go to a URL
 vibe.go('https://google.com')
