@@ -1,29 +1,40 @@
 pipeline {
     agent any
 
+    environment {
+        PATH = "/opt/homebrew/bin:/usr/local/bin:${env.PATH}"
+    }
+
     stages {
+
         stage('Checkout') {
             steps {
                 checkout scm
             }
         }
 
-        stage('Install Dependencies') {
+        stage('Verify Node & Vibium') {
             steps {
-                sh 'npm install'
+                sh '''
+                    node -v
+                    npm -v
+                    vibium --version
+                '''
             }
         }
 
-        stage('Run Bot') {
+        stage('Run Vibium Tests') {
             steps {
-                sh 'npm start'
+                sh '''
+                    vibium run
+                '''
             }
         }
     }
 
     post {
         always {
-            archiveArtifacts artifacts: '*.png', allowEmptyArchive: true
+            echo "Vibium pipeline finished"
         }
     }
 }
