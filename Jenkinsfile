@@ -13,7 +13,7 @@ pipeline {
             }
         }
 
-        stage('Verify Node & Vibium') {
+        stage('Verify Vibium') {
             steps {
                 sh '''
                     node -v
@@ -23,18 +23,12 @@ pipeline {
             }
         }
 
-        stage('Run Vibium Tests') {
+        stage('Run Vibium') {
             steps {
                 sh '''
                     vibium run
                 '''
             }
-        }
-    }
-
-    post {
-        always {
-            echo "Vibium pipeline finished"
         }
     }
 }
