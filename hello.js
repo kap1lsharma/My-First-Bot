@@ -5,7 +5,7 @@ const {browserSync} = require('vibium');
 const vibe = browserSync.launch({ headless: false });
 
 //Go to a URL
-vibe.go('https://amazon.com')
+vibe.go('https://google.com')
 console.log('Opened amazon.com')
 
 //Take a screenshot and save it to disk
@@ -23,4 +23,4 @@ console.log('Clicked the link')
 
 //Close the browser
 vibe.quit()
-// console.log('Browser closed')
+console.log('Browser closed')
