@@ -10,8 +10,10 @@ console.log('Opened amazon.com')
 
 //Take a screenshot and save it to disk
 const screenshot = vibe.screenshot()
-fs.writeFileSync('example.png', screenshot)
-console.log('Saved screenshot to example.png')
+fs.mkdirSync('screenshots', { recursive: true });
+const filename = `screenshots/screenshot_${Date.now()}.png`;
+fs.writeFileSync(filename, screenshot)
+console.log(`Saved screenshot to ${filename}`)
 
 //Find and click a link
 const link = vibe.find('a')
@@ -20,5 +22,5 @@ link.click()
 console.log('Clicked the link')
 
 //Close the browser
-// vibe.close()
+vibe.quit()
 // console.log('Browser closed')
